@@ -22,27 +22,27 @@ CREATE TABLE series (
 
 CREATE TABLE issues (
   id serial PRIMARY KEY,
-  series_id numeric NOT NULL REFERENCES series (id),
+  series_id numeric NOT NULL REFERENCES series(id),
+  issue_num numeric NOT NULL,
   name text,
-  cover_img text,
-  plot text,
-  issue_num numeric NOT NULL
+  cover_img text
 );
 
 CREATE TABLE writers (
   id serial PRIMARY KEY,
-  name text NOT NULL,
-  issue_id numeric NOT NULL REFERENCES issues (id)
-  plot_id numeric NOT NULL REFERENCES plots()
+  plot_id numeric NOT NULL REFERENCES plots(id),
+  name text NOT NULL
 );
 
 CREATE TABLE artists (
   id serial PRIMARY KEY,
+  issue_id numeric NOT NULL REFERENCES issues(id),
   name text NOT NULL,
-  issue_id numeric NOT NULL REFERENCES issues (id)
+  type text
 );
 
 CREATE TABLE plots (
   id serial PRIMARY KEY,
-  issue_id numeric NOT NULL REFERENCES
-)
+  issue_id numeric NOT NULL REFERENCES,
+  plot text
+);

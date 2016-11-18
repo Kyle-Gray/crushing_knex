@@ -34,4 +34,20 @@ EXECUTE insertIssues ('');
 EXECUTE insertIssues ('');
 EXECUTE insertIssues ('');
 
-PREPARE insert
+PREPARE insertWriters (numeric, text) AS
+  INSERT INTO writers (plot_id, name) VALUES ($1, $2);
+
+  EXECUTE insertWriters('');
+
+
+PREPARE insertArtists(numeric, text, text) AS
+  INSERT INTO artists (issue_id, name, type) VALUES ($1, $2, $3);
+
+  EXECUTE insertArtists ('');
+
+
+
+PREPARE insertPlots(numeric, text) AS
+  INSERT INTO plots (issue_id, plot) VALUES ($1, $2);
+
+EXECUTE insertPlots ('');
