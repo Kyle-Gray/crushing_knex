@@ -37,13 +37,13 @@ EXECUTE insertIssues ('');
 PREPARE insertWriters (numeric, text) AS
   INSERT INTO writers (plot_id, name) VALUES ($1, $2);
 
-  EXECUTE insertWriters('');
+EXECUTE insertWriters('');
 
 
 PREPARE insertArtists(numeric, text, text) AS
   INSERT INTO artists (issue_id, name, type) VALUES ($1, $2, $3);
 
-  EXECUTE insertArtists ('');
+EXECUTE insertArtists ('');
 
 
 
