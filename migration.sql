@@ -1,3 +1,11 @@
+DROP TABLE publishers IF EXISTS;
+DROP TABLE series IF EXISTS;
+DROP TABLE issues IF EXISTS;
+DROP TABLE writers IF EXISTS;
+DROP TABLE artists IF EXISTS;
+
+
+
 CREATE TABLE publishers (
   id serial PRIMARY KEY,
   name text
