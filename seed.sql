@@ -1,9 +1,37 @@
-INSERT INTO publishers (name) VALUES ('');
+-- INSERT INTO publishers (name) VALUES ('');
+--
+-- INSERT INTO series (name, overview, genre) VALUES ('', '', '');
+--
+-- INSERT INTO issues (name, cover_img, plot, issue_num) VALUES ('', '', '', '');
+--
+-- INSERT INTO writers (name) VALUES ('');
+--
+-- INSERT INTO artists (name) VALUES ('');
 
-INSERT INTO series (name, overview, genre) VALUES ('', '', '');
 
-INSERT INTO issues (name, cover_img, plot, issue_num) VALUES ('', '', '', '');
+PREPARE insertPub (text) AS
+  INSERT INTO publishers (name) VALUES($1);
 
-INSERT INTO writers (name) VALUES ('');
+EXECUTE insertPub('Marvel');
+EXECUTE insertPub('DC');
+EXECUTE insertPub('Image');
+EXECUTE insertPub ('IDW');
 
-INSERT INTO artists (name) VALUES ('');
+PREPARE insertSeries (numeric, text, text, numeric, text) AS
+  INSERT INTO series (pub_id, name, genre, year,  overview) VALUES ($1, $2, $3, $4, $5);
+
+EXECUTE insertSeries ('');
+EXECUTE insertSeries ('');
+EXECUTE insertSeries ('');
+EXECUTE insertSeries ('');
+EXECUTE insertSeries ('');
+
+PREPARE insertIssues (numeric, numeric, text, text, text) AS INSERT INTO issues (series_id, issue_num, name, cover_img) VALUES ($1, $2, $3, $4);
+
+EXECUTE insertIssues ('');
+EXECUTE insertIssues ('');
+EXECUTE insertIssues ('');
+EXECUTE insertIssues ('');
+EXECUTE insertIssues ('');
+
+PREPARE insert
