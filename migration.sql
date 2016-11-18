@@ -24,8 +24,8 @@ CREATE TABLE issues (
   id serial PRIMARY KEY,
   series_id integer NOT NULL REFERENCES series(id),
   issue_num numeric NOT NULL,
-  name text,
-  cover_img text
+  cover_img text,
+  name text
 );
 
 
