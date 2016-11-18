@@ -1,9 +1,9 @@
-DROP TABLE publishers IF EXISTS;
-DROP TABLE series IF EXISTS;
-DROP TABLE issues IF EXISTS;
-DROP TABLE writers IF EXISTS;
-DROP TABLE artists IF EXISTS;
-DROP TABLE plots IF EXISTS;
+DROP TABLE IF EXISTS writers;
+DROP TABLE IF EXISTS plots;
+DROP TABLE IF EXISTS artists;
+DROP TABLE IF EXISTS issues;
+DROP TABLE IF EXISTS series;
+DROP TABLE IF EXISTS publishers;
 
 
 CREATE TABLE publishers (
@@ -13,7 +13,7 @@ CREATE TABLE publishers (
 
 CREATE TABLE series (
   id serial PRIMARY KEY,
-  pub_id numeric NOT NULL REFERENCES publishers (id),
+  pub_id integer NOT NULL REFERENCES publishers (id),
   name text NOT NULL,
   overview text,
   genre text,
@@ -22,27 +22,28 @@ CREATE TABLE series (
 
 CREATE TABLE issues (
   id serial PRIMARY KEY,
-  series_id numeric NOT NULL REFERENCES series(id),
+  series_id integer NOT NULL REFERENCES series(id),
   issue_num numeric NOT NULL,
   name text,
   cover_img text
 );
 
-CREATE TABLE writers (
-  id serial PRIMARY KEY,
-  plot_id numeric NOT NULL REFERENCES plots(id),
-  name text NOT NULL
-);
 
 CREATE TABLE artists (
   id serial PRIMARY KEY,
-  issue_id numeric NOT NULL REFERENCES issues(id),
+  issue_id integer NOT NULL REFERENCES issues(id),
   name text NOT NULL,
   type text
 );
 
 CREATE TABLE plots (
   id serial PRIMARY KEY,
-  issue_id numeric NOT NULL REFERENCES,
+  issue_id integer NOT NULL REFERENCES issues(id),
   plot text
+);
+
+CREATE TABLE writers (
+  id serial PRIMARY KEY,
+  plot_id integer NOT NULL REFERENCES plots(id),
+  name text NOT NULL
 );
